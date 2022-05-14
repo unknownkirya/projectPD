@@ -1,74 +1,74 @@
 # projectPD
 
-#импортируем необходимые библиотеки
+    #импортируем необходимые библиотеки
 
-import pygame
-import time
-import random
+    import pygame
+    import time
+    import random
 
-#вызываем функцию для подготовки модулей pygame к дальнейшей работе 
+    #вызываем функцию для подготовки модулей pygame к дальнейшей работе 
 
-pygame.init()
+    pygame.init()
 
-#описываем цвета
+    #описываем цвета
 
-white = (255, 255, 255)
-yellow = (255, 255, 102)
-orange = (255, 136, 0)
-red = (213, 50, 80)
-green = (255, 255, 120)
-fuchsia = (255, 0, 255)
-lime = (135, 240, 10)
-black = (0, 0, 0)
+    white = (255, 255, 255)
+    yellow = (255, 255, 102)
+    orange = (255, 136, 0)
+    red = (213, 50, 80)
+    green = (255, 255, 120)
+    fuchsia = (255, 0, 255)
+    lime = (135, 240, 10)
+    black = (0, 0, 0)
 
-#задаём размеры дисплея, на котором будет происходить игровой процесс
+    #задаём размеры дисплея, на котором будет происходить игровой процесс
 
-dis_width = 660
-dis_height = 440
+    dis_width = 660
+    dis_height = 440
 
-#создаём дисплей и задаём название игры 
+    #создаём дисплей и задаём название игры 
 
-dis = pygame.display.set_mode((dis_width, dis_height))
-pygame.display.set_caption('Змейка')
+    dis = pygame.display.set_mode((dis_width, dis_height))
+    pygame.display.set_caption('Змейка')
 
-#начинаем отсчёт времени 
+    #начинаем отсчёт времени 
 
-clock = pygame.time.Clock()
+    clock = pygame.time.Clock()
 
-#задаём размеры самой змейки и её скорость  
+    #задаём размеры самой змейки и её скорость  
 
-snake_block = 10
-snake_speed = 11
+    snake_block = 10
+    snake_speed = 11
 
-#задаём размеры сопровождающих игрока надписей
+    #задаём размеры сопровождающих игрока надписей
 
-font_style = pygame.font.SysFont("bahnschrift", 25)
-score_font = pygame.font.SysFont("comicsansms", 35)
+    font_style = pygame.font.SysFont("bahnschrift", 25)
+    score_font = pygame.font.SysFont("comicsansms", 35)
 
-#функция для контроля игрового счёта (съеденных фрагментов еды) 
+    #функция для контроля игрового счёта (съеденных фрагментов еды) 
 
-def Your_score(score):
-    value = score_font.render("Your Score: " + str(score), True, fuchsia)
-    dis.blit(value, [0, 0])
+    def Your_score(score):
+        value = score_font.render("Your Score: " + str(score), True, fuchsia)
+        dis.blit(value, [0, 0])
 
-#функция для отрисовки самой змейки 
+    #функция для отрисовки самой змейки 
 
-def snake_pct(snake_block, snake_list):
-    for x in snake_list:
-        pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
- 
-#функция для создания сообщений внутри игры 
+    def snake_pct(snake_block, snake_list):
+        for x in snake_list:
+            pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
 
-def message(msg, color):
-    mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [dis_width / 6, dis_height / 3])
+    #функция для создания сообщений внутри игры 
 
-#функция, в которой и происходит игровой процесс 
+    def message(msg, color):
+        mesg = font_style.render(msg, True, color)
+        dis.blit(mesg, [dis_width / 6, dis_height / 3])
 
-def game_process():
-    global snake_speed
-    game_over = False
-    game_close = False
+    #функция, в которой и происходит игровой процесс 
+
+    def game_process():
+        global snake_speed
+        game_over = False
+        game_close = False
 
     #задаём начальные координаты змейки
     
